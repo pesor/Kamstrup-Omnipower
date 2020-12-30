@@ -29,6 +29,11 @@ const char mqttuser[] = ""; //add eventual mqtt username
 const char mqttpass[] = ""; //add eventual mqtt password
 // Toppic
 const char topic[]  = "Kamstrup/data";
+
+// Kamstrup Omnipower keys
+const char conf_key[33] = "AD1DD3B8653BE3D0DBA025389538D1AB";     //Meter Key
+const char conf_authkey[33] = "107CF59A53D6BC10AD79E554653BCD36"; //Meter Key
+
 // *******************************************************************************************************************************
 // END userdefined data
 // *******************************************************************************************************************************
