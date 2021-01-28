@@ -23,7 +23,8 @@
 //                 "2.0.1"; //  ---- Small error cor
 //                 "2.0.2"; //  ---- DST correction, FTP backup, and small error corrections
 //                 "3.0.0"; //  ---- Replaced Arduino EDI, with VSCode and PlatformIO
-const String rel = "3.1.1"; //  ---- Optimised using VSCode and PlatformIO
+//                 "3.1.1"; //  ---- Optimised using VSCode and PlatformIO
+const String rel = "3.2.1"; //  ---- Including month down and month up kWh's
 
 // Date and time syncronize
 const char *ntpServer = "pool.ntp.org";
@@ -56,7 +57,13 @@ String lastMonthStr;
 String readString;
 float twelveNetto[14];
 float twelveNettoTotal;
+float twelveUp[14];
+float twelveUpTotal;
+float twelveDown[14];
+float twelveDownTotal;
 float nettoMonth;
+float upMonth;
+float downMonth;
 float MeterToLastMonthEnergyExp;
 float MeterToLastMonthEnergyImp;
 float MeterEnergyTotImpNow;

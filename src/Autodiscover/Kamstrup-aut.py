@@ -1,5 +1,5 @@
 '''
-Kamstrup-Unipower to MQTT Gateway, release 2.0.0
+Kamstrup-Unipower to MQTT Gateway, release 3.0.0
 '''
 KEY_TOPIC = 'topic'
 KEY_PAYLOAD = 'payload'
@@ -18,7 +18,7 @@ def send_discovery_topics():
         'manufacturer': "Kamstrup, programmed by Per Rose",
         'model':'OMNIPOWER 3-phase',   
         'name':  'Kamstrup',
-        'sw_version':  '2.0.0'
+        'sw_version':  '3.0.0'
     }
     entity_payloads = {
         'sensorname': {
@@ -180,6 +180,16 @@ def send_discovery_topics():
             'unit_of_meas': "kWh", 
             'icon':'mdi:download'
         }, 
+         'monthUp': {
+            'name': 'Kamstrup_monthUp',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:download'
+        }, 
+         'monthDown': {
+            'name': 'Kamstrup_monthDown',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:download'
+        }, 
          'reactiveExportWh': {
             'name': 'Kamstrup_reactiveExportWh',
             'unit_of_meas': "kWh", 
@@ -190,68 +200,198 @@ def send_discovery_topics():
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-            'Jan': {
-            'name': 'Kamstrup_Jan',
+            'nettoJan': {
+            'name': 'Kamstrup_nettoJan',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Feb': {
-            'name': 'Kamstrup_Feb',
+         'nettoFeb': {
+            'name': 'Kamstrup_nettoFeb',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Mar': {
-            'name': 'Kamstrup_Mar',
+         'nettoMar': {
+            'name': 'Kamstrup_nettoMar',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Apr': {
-            'name': 'Kamstrup_Apr',
+         'nettoApr': {
+            'name': 'Kamstrup_nettoApr',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Maj': {
-            'name': 'Kamstrup_Maj',
+         'nettoMaj': {
+            'name': 'Kamstrup_nettoMaj',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Jun': {
-            'name': 'Kamstrup_Jun',
+         'nettoJun': {
+            'name': 'Kamstrup_nettoJun',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Jul': {
-            'name': 'Kamstrup_Jul',
+         'nettoJul': {
+            'name': 'Kamstrup_nettoJul',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Aug': {
-            'name': 'Kamstrup_Aug',
+         'nettoAug': {
+            'name': 'Kamstrup_nettoAug',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Sep': {
-            'name': 'Kamstrup_Sep',
+         'nettoSep': {
+            'name': 'Kamstrup_nettoSep',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Okt': {
-            'name': 'Kamstrup_Okt',
+         'nettoOkt': {
+            'name': 'Kamstrup_nettoOkt',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Nov': {
-            'name': 'Kamstrup_Nov',
+         'nettoNov': {
+            'name': 'Kamstrup_nettoNov',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
-         'Dec': {
-            'name': 'Kamstrup_Dec',
+         'nettoDec': {
+            'name': 'Kamstrup_nettoDec',
             'unit_of_meas': "kWh", 
             'icon':'mdi:current-ac'
         }, 
          'netto12': {
             'name': 'Kamstrup_netto12',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:arrow-up-down-bold'
+         },    
+         'upJan': {
+            'name': 'Kamstrup_upJan',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upFeb': {
+            'name': 'Kamstrup_upFeb',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upMar': {
+            'name': 'Kamstrup_upMar',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upApr': {
+            'name': 'Kamstrup_upApr',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upMaj': {
+            'name': 'Kamstrup_upMaj',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upJun': {
+            'name': 'Kamstrup_upJun',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upJul': {
+            'name': 'Kamstrup_upJul',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upAug': {
+            'name': 'Kamstrup_upAug',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upSep': {
+            'name': 'Kamstrup_upSep',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upOkt': {
+            'name': 'Kamstrup_upOkt',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upNov': {
+            'name': 'Kamstrup_upNov',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'upDec': {
+            'name': 'Kamstrup_upDec',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'up12': {
+            'name': 'Kamstrup_up12',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:arrow-up-down-bold'
+        }, 
+         'downJan': {
+            'name': 'Kamstrup_downJan',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downFeb': {
+            'name': 'Kamstrup_downFeb',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downMar': {
+            'name': 'Kamstrup_downMar',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downApr': {
+            'name': 'Kamstrup_downApr',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downMaj': {
+            'name': 'Kamstrup_downMaj',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downJun': {
+            'name': 'Kamstrup_downJun',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downJul': {
+            'name': 'Kamstrup_downJul',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downAug': {
+            'name': 'Kamstrup_downAug',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downSep': {
+            'name': 'Kamstrup_downSep',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downOkt': {
+            'name': 'Kamstrup_downOkt',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downNov': {
+            'name': 'Kamstrup_downNov',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'downDec': {
+            'name': 'Kamstrup_downDec',
+            'unit_of_meas': "kWh", 
+            'icon':'mdi:current-ac'
+        }, 
+         'down12': {
+            'name': 'Kamstrup_down12',
             'unit_of_meas': "kWh", 
             'icon':'mdi:arrow-up-down-bold'
         }, 

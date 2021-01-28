@@ -175,7 +175,14 @@ void sendData(MeterData md)
   MeterEnergyTotExpNow = md.activeExportWh / 1000.;
   nettoMonth = (MeterEnergyTotImpNow - MeterToLastMonthEnergyImp) - (MeterEnergyTotExpNow - MeterToLastMonthEnergyExp);
   output["nettoMonthTot"] = String(nettoMonth);
+  upMonth = MeterEnergyTotExpNow - MeterToLastMonthEnergyExp;
+  output["monthUp"] = String(upMonth);  
+  downMonth = MeterEnergyTotImpNow - MeterToLastMonthEnergyImp;
+  output["monthDown"] = String(downMonth);  
+
   twelveNetto[thisMonth] = nettoMonth;
+  twelveUp[thisMonth] = upMonth;
+  twelveDown[thisMonth] = downMonth;
 
   if (md.reactiveImportWhValid)
   {
@@ -191,61 +198,8 @@ void sendData(MeterData md)
   String timeStampKamstrup = formattedDate;
   output["dayStampKamstrup"] = timeStampKamstrup;
 
-  float NettoSum = 0.00;
-
-  for (int i = 1; i < 13; i++)
-  {
-    NettoSum += twelveNetto[i];
-  }
-
-  output["Jan"] = String(twelveNetto[1]);
-  output["Feb"] = String(twelveNetto[2]);
-  output["Mar"] = String(twelveNetto[3]);
-  output["Apr"] = String(twelveNetto[4]);
-  output["Maj"] = String(twelveNetto[5]);
-  output["Jun"] = String(twelveNetto[6]);
-  output["Jul"] = String(twelveNetto[7]);
-  output["Aug"] = String(twelveNetto[8]);
-  output["Sep"] = String(twelveNetto[9]);
-  output["Okt"] = String(twelveNetto[10]);
-  output["Nov"] = String(twelveNetto[11]);
-  output["Dec"] = String(twelveNetto[12]);
-  output["netto12"] = String(NettoSum);
-
-  // if day change, we save the 12 last months netto
-  if (thisDayStr != lastDayStr)
-  {
-    File f12 = SPIFFS.open("/last12.txt", "w");
-
-    StaticJsonDocument<512> doc12;
-    JsonObject root = doc12.to<JsonObject>();
-    JsonObject netto12 = root.createNestedObject("netto12");
-
-    // Now we set the 12 last months production
-    netto12["Jan"] = String(twelveNetto[1]);
-    netto12["Feb"] = String(twelveNetto[2]);
-    netto12["Mar"] = String(twelveNetto[3]);
-    netto12["Apr"] = String(twelveNetto[4]);
-    netto12["Maj"] = String(twelveNetto[5]);
-    netto12["Jun"] = String(twelveNetto[6]);
-    netto12["Jul"] = String(twelveNetto[7]);
-    netto12["Aug"] = String(twelveNetto[8]);
-    netto12["Sep"] = String(twelveNetto[9]);
-    netto12["Okt"] = String(twelveNetto[10]);
-    netto12["Nov"] = String(twelveNetto[11]);
-    netto12["Dec"] = String(twelveNetto[12]);
-    netto12["netto12"] = String(NettoSum);
-
-    // Serialize JSON to file
-    if (serializeJson(doc12, f12) == 0)
-    {
-      Serial.println(F("Failed to write to file"));
-    }
-
-    f12.close();
-
-    Serial.println("Date change in effect");
-  }
+// Include the month data
+#include <monthData.h>
 
   // Connect to mqtt broker
   //  Serial.print("Attempting to connect to the MQTT broker: ");
