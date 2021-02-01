@@ -9,7 +9,7 @@ void sendData(MeterData md)
   {
 
     int lastMonthArr = lastMonthStr.toInt();
-    twelveNetto[lastMonthArr] = nettoMonth / 1000;
+    // twelveNetto[lastMonthArr] = nettoMonth / 1000; This should not be there
 
     Serial.println(lastMonthArr);
     writeFile(SPIFFS, "/lastMonth.txt", thisMonthStr.c_str());
