@@ -1,5 +1,17 @@
 void sendData(MeterData md)
 {
+  // If just before midnight,  last buffer to ftp-server
+  if (thisHour == 23)
+  {
+    if (thisMinute == 59)
+    {
+      if (thisSecond > 49)
+      {
+#include <date-change.h>
+      }
+    }
+  }
+
   // Send the MeterData to MQTT
 
   Serial.println(thisMonthStr);
@@ -176,9 +188,9 @@ void sendData(MeterData md)
   nettoMonth = (MeterEnergyTotImpNow - MeterToLastMonthEnergyImp) - (MeterEnergyTotExpNow - MeterToLastMonthEnergyExp);
   output["nettoMonthTot"] = String(nettoMonth);
   upMonth = MeterEnergyTotExpNow - MeterToLastMonthEnergyExp;
-  output["monthUp"] = String(upMonth);  
+  output["monthUp"] = String(upMonth);
   downMonth = MeterEnergyTotImpNow - MeterToLastMonthEnergyImp;
-  output["monthDown"] = String(downMonth);  
+  output["monthDown"] = String(downMonth);
 
   twelveNetto[thisMonth] = nettoMonth;
   twelveUp[thisMonth] = upMonth;
@@ -216,7 +228,6 @@ void sendData(MeterData md)
   }
 
   // Send to mqtt
-  char buffer[1792];
   serializeJson(docSend, buffer);
 
   Serial.println("Sending message to topic: ");
@@ -240,6 +251,7 @@ void sendData(MeterData md)
 
   if (thisDayStr != lastDayStr)
   {
-#include <date-change.h>
+    writeFile(SPIFFS, "/lastDay.txt", thisDayStr.c_str());
+    lastDayStr = thisDayStr;
   }
 }

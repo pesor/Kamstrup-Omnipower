@@ -52,8 +52,12 @@ String thisDayStr;
 String lastDayStr;
 String thisMonthStr;
 String lastMonthStr;
+int thisHour;
+int thisMinute;
+int thisSecond;
 
 // Various variables
+char buffer[1792];
 String readString;
 float twelveNetto[14];
 float twelveNettoTotal;

@@ -29,8 +29,10 @@ timeStamp1 = formattedDate.substring(splitT + 1, formattedDate.length() - 1);
 //  Serial.print("Day ");
 //  Serial.println(timeClient.getDay());
 // variables needed for DST test
-int thisHour = timeClient.getHours();
 int thisDay = dateDay.toInt();
+thisHour = timeClient.getHours();
+thisMinute = timeClient.getMinutes();
+thisSecond = timeClient.getSeconds();
 thisDayStr = dateDay;
 thisMonthStr = dateMonth;
 thisMonth = dateMonth.toInt();
