@@ -1,17 +1,5 @@
 void sendData(MeterData md)
 {
-  // If just before midnight,  last buffer to ftp-server
-  if (thisHour == 23)
-  {
-    if (thisMinute == 59)
-    {
-      if (thisSecond > 49)
-      {
-#include <date-change.h>
-      }
-    }
-  }
-
   // Send the MeterData to MQTT
 
   Serial.println(thisMonthStr);
@@ -248,6 +236,18 @@ void sendData(MeterData md)
   }
   Serial.println();
   mqttClient.disconnect();
+
+  // If just before midnight,  last buffer to ftp-server
+  if (thisHour == 23)
+  {
+    if (thisMinute == 59)
+    {
+      if (thisSecond > 49)
+      {
+#include <date-change.h>
+      }
+    }
+  }
 
   if (thisDayStr != lastDayStr)
   {
