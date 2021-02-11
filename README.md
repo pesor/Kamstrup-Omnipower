@@ -17,7 +17,9 @@ What things you need to install the software and how to install them
 
 2. Windows 10, with installed Arduino EDI (my version 1.8.12)
 
-3. VSCode and PlatformIO
+3. VSCode and PlatformIO, here is a video, it is about 3D print, but skip to the part where he install VSCode and PlatformIO:
+
+   https://www.youtube.com/watch?v=eq_ygvHF29I
 
 4. An ESP32DEV board, I used this from AliExpress: https://www.aliexpress.com/item/32849567377.html?spm=a2g0s.9042311.0.0.27424c4dcQpFO7 but other can be used, you just have to be aware of the different pin-outs on the different boards.
 
@@ -32,10 +34,12 @@ What things you need to install the software and how to install them
 
    **mqtt:**
      **broker: 192.168.1.64**
+
      **discovery: true**
+
      **discovery_prefix: homeassistant** (Default, it is the folder where you have your configuration.yaml file)
 
-8. [](https://https://www.youtube.com/channel/UCuqokNoK8ZFNQdXxvlE129g)
+8. This is the address to BeardedThinker: https://www.youtube.com/channel/UCuqokNoK8ZFNQdXxvlE129g
 
    
 
@@ -88,65 +92,6 @@ Few things of importants:
     ​																					**YOU ARE DONE with first part**
 
 
-## Which information do I get?
-
-The data from the Kamstrup omnipower is translated into the following json format, and sent to your mqtt broker.
-
-(Note that I also have Sun cells on the roof, sending power to the grid via a Fronius inverter. Se my solution for Fronius here :)
-
-```json
-{
-  "output": {
-    "activePowerPlus": "641",   
-    "activePowerMinus": "0",
-    "activePowerPlusL1": "147",
-    "activePowerMinusL1": "0",
-    "activePowerPlusL2": "181",
-    "activePowerMinusL2": "0",
-    "activePowerPlusL3": "313",
-    "activePowerMinusL3": "0",
-    "reactivePowerPlus": "0",
-    "reactivePowerMinus": "154",
-    "powerFactorL1": "96",
-    "powerFactorL2": "92",
-    "powerFactorL3": "85",
-    "powerFactorTotal": "97",
-    "voltageL1": "235",
-    "voltageL2": "233",
-    "voltageL3": "235",
-    "centiAmpereL1": "1.31",
-    "centiAmpereL2": "1.55",
-    "centiAmpereL3": "1.79",
-    "activeImportWh": "7819.05",
-    "activeExportWh": "7038.92",
-    "activeImportWhL1": "266.22",
-    "activeExportWhL1": "419.99",
-    "activeImportWhL2": "341.71",
-    "activeExportWhL2": "399.04",
-    "activeImportWhL3": "289.11",
-    "activeExportWhL3": "0.00",
-    "nettoMonthTot": "2.78",
-    "reactiveImportWh": "303.46",
-    "reactiveExportWh": "3196.54",
-    "dayStampKamstrup": "2020-10-02T16:46:22Z",
-    "Jan": "0.00",
-    "Feb": "0.00",
-    "Mar": "107.84",
-    "Apr": "-242.80",
-    "Maj": "-311.25",
-    "Jun": "-309.09",
-    "Jul": "-154.08",
-    "Aug": "-11.45",
-    "Sep": "30.95",
-    "Okt": "0.00",
-    "Nov": "0.00",
-    "Dec": "0.00",
-    "netto12": "-889.88"
-  }
-}
-```
-
-
 
 ## The Python Part - The Autodiscover - MAGIC
 
@@ -164,7 +109,7 @@ You find and execute the Python script, in the menu "Developer Tools"/"SERVICES"
 
 You just press the "CALL SERVICE" button, and all the sensors from mqtt will be autodiscovered and added to your menu "Configuration"/"integrations", where you will find the MQTT integration, and here you can select the devices, and then select Kamstrup, and all sensors will be shown. You can use the "ADD TO LOVELACE" function, or you can add them manually to any LOVELACE card you want.
 
-### Running
+### Running and the information you get
 
 The Kamstrup ESP32, will wake up every 10 seconds, when the Kamstrup meter pushes a message. This message will be translated, and the data will be sent to the MQTT server/broker, and at the same time they will be updated in Homeassistant.
 
