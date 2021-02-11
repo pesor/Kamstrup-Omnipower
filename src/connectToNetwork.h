@@ -1,9 +1,8 @@
 // Actual routine to connect to the WIFI network
 void connectToNetwork()
 {
-  Serial.print("Size of SSID array ");
-  Serial.println(ssidArrNo);
-
+  WiFi.config(INADDR_NONE, INADDR_NONE, INADDR_NONE); // call is only a workaround for bug in WiFi class
+  WiFi.setHostname("Kamstrup");
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
