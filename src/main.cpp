@@ -90,7 +90,7 @@ mbedtls_gcm_context m_ctx;
 #define TXD2 17
 
 // Include subroutines
-#include <goToDeepSleepFiveMinutes.h>
+#include <go-to-sleep-5-minutes.h>
 #include <fileManagement.h>
 #include <initialize.h>
 #include <getLast12monthsData.h>

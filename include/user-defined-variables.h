@@ -15,6 +15,8 @@ const char* password = "password";
 
 // Off-sets for time, each hour is 3.600 seconds.
 const long  gmtOffset_sec = 3600;
+#define TIME_TO_SLEEP  3000       //Time ESP32 will go to sleep (in seconds)
+// Time 
 
 // FTP constants
 char ftp_server[] = "192.168.1.64";
